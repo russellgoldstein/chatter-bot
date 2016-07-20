@@ -2,7 +2,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
-var qs = require('querystring');
 var util = require('util');
 
 var channels = {};
@@ -51,11 +50,11 @@ app.post('/collect', function(req, res){
 		channelObj.usersHash[user.name] = user;
 	}
 	
-	if((new Date()/1000) - (channelObj.lastChat.getTime()/1000) < 20){
+	if((new Date()/1000) - (channelObj.lastChat.getTime()/1000) < 30){
 		channelObj.numMessages = channelObj.numMessages + 1;
-		console.log("new chat less than 20 seconds, now at " + channelObj.numMessages);
+		console.log("new chat less than 30 seconds, now at " + channelObj.numMessages);
 		
-		if(channelObj.numMessages > 5 && ((new Date()/1000) - (channelObj.lastSend.getTime()/1000) > 120)){
+		if(channelObj.numMessages > 10 && ((new Date()/1000) - (channelObj.lastSend.getTime()/1000) > 300)){
 			channelObj.numMessages = 0;
 			//Make Post Request
 			console.log("new chatter, sending post request");
@@ -80,7 +79,7 @@ app.post('/collect', function(req, res){
 			channelObj.lastSend = new Date();
 		}
 	}else{
-		console.log("new chat greater than 20 seconds");
+		console.log("new chat greater than 30 seconds");
 		channelObj.numMessages = 0;
 		channelObj.users = [];
 	}
