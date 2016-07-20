@@ -1,7 +1,7 @@
 {
-  "name": "SlackGAIntegration",
+  "name": "chatter-bot",
   "version": "1.0.0",
-  "description": "Integration with GA to track Slack usage",
+  "description": "Track and notify about chatty slack usage",
   "main": "app.js",
   "dependencies": {
     "express": "^4.12.3",
