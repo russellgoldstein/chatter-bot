@@ -68,7 +68,10 @@ app.post('/collect', function(req, res){
 			request({
 				url:'https://hooks.slack.com/services/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',
 				method: 'POST',
-				json: {"text": "<!channel> discussion is heating up in <#"+channel.id+"|"+channel.name+"> between " + users + "!"}
+				json: {
+					"text": "<!channel> discussion is heating up in <#"+channel.id+"|"+channel.name+"> between " + users + "!",
+					"channel": "#"+channel.name
+					}
 			}, function(error, response, body){
 			    if(error) {
 			        console.log(error);
