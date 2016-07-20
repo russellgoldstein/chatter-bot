@@ -54,7 +54,7 @@ app.post('/collect', function(req, res){
 		channelObj.numMessages = channelObj.numMessages + 1;
 		console.log("new chat less than 30 seconds, now at " + channelObj.numMessages);
 		
-		if(channelObj.numMessages > 10 && ((new Date()/1000) - (channelObj.lastSend.getTime()/1000) > 300)){
+		if(channelObj.numMessages > 7 && ((new Date()/1000) - (channelObj.lastSend.getTime()/1000) > 300)){
 			channelObj.numMessages = 0;
 			//Make Post Request
 			console.log("new chatter, sending post request");
