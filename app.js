@@ -59,8 +59,8 @@ app.post('/collect', function(req, res){
 			//Make Post Request
 			console.log("new chatter, sending post request");
 			var users = "";
-			for(user in channelObj.usersHash){
-				users += "<@"+user.id+"|"+user.name+">, ";
+			for(userKey in channelObj.usersHash){
+				users += "<@"+channelObj.usersHash[userKey].id+"|"+channelObj.usersHash[userKey].name+">, ";
 			}
 			console.log("users: " + users);
 			users = users.substring(0, users.length-2);
