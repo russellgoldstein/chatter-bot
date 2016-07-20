@@ -44,6 +44,9 @@ app.post('/collect', function(req, res){
 	}else if(channelObj.users[channelObj.users.length-1] == user.name){
 		// only add new user if the last message wasn't from the same user
 		console.log("user " + user.name + " sending consecutive messages...skipping");
+		// but still count it as a new chat
+		channelObj.lastChat = new Date();
+		channels[channel.name] = channelObj;
 		return;
 	}else{
 		channelObj.users.push(user.name);
@@ -85,6 +88,7 @@ app.post('/collect', function(req, res){
 		console.log("new chat greater than 30 seconds");
 		channelObj.numMessages = 0;
 		channelObj.users = [];
+		channelObj.usersHash = {};
 	}
 	channelObj.lastChat = new Date();
 	
