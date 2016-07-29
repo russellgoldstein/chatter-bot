@@ -67,12 +67,12 @@ app.post('/collect', function(req, res){
 			}
 			console.log("users: " + users);
 			users = users.substring(0, users.length-2);
-			console.log("msg: " + "<!channel> discussion is heating up in "+channel.name+" between " + users);
+			console.log("msg: " + "Discussion is heating up in "+channel.name+" between " + users);
 			request({
 				url:'https://hooks.slack.com/services/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',
 				method: 'POST',
 				json: {
-					"text": "<!channel> discussion is heating up in <#"+channel.id+"|"+channel.name+"> between " + users + "!",
+					"text": "Discussion is heating up in <#"+channel.id+"|"+channel.name+"> between " + users + "!",
 					"channel": "#"+channel.name
 					}
 			}, function(error, response, body){
